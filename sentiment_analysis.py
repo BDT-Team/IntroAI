@@ -84,7 +84,7 @@ dt = DecisionTreeClassifier()
 train(dt, "tree.sav")
 
 # Random Forest - SMOTETomek
-rf = RandomForestClassifier(n_estimator=128, random_state=42, max_depth=11)
+rf = RandomForestClassifier(n_estimators=128, random_state=42, max_depth=15)
 train(rf, "forest.sav", smote=True)
 
 # MultinomialNB - SMOTETomek
