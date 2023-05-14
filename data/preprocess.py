@@ -1,7 +1,7 @@
 import re
 from underthesea import sent_tokenize, word_tokenize, text_normalize
 
-from vowels import vowel
+from data.vowels import vowel
 
 
 a = "💥 Sẵn tại cửa hàng"
@@ -37,17 +37,17 @@ def remove_punct(text):
     return ' '.join(list_text.split())
 
 # Remove stopwords
-with open("vietnamese-stopwords-dash.txt", "r", encoding="utf-8") as f:
+with open("data/vietnamese-stopwords-dash.txt", "r", encoding="utf-8") as f:
     list_stopword = [line.strip() for line in f.readlines()]
     
 def remove_stopword(text, list_stopword):
     return " ".join([word for word in text.split() if word not in list_stopword])
 
 # Remove repeated last character
-with open("grapheme_vi.txt", "r", encoding="utf-8") as vi:
+with open("data/grapheme_vi.txt", "r", encoding="utf-8") as vi:
     vi_list = [line.strip() for line in vi.readlines()]
     
-with open("word_en.txt", "r", encoding="utf-8") as en:
+with open("data/word_en.txt", "r", encoding="utf-8") as en:
     en_list = [line.strip() for line in en.readlines()]
     
 def not_in_vocab(word, vi_list, en_list):
@@ -62,7 +62,7 @@ def repeat_vowel(word):
 def remove_last_repeat(text, vi_list, en_list):
     new_text = []
     for word in text.split():
-        while word[-1] in '.,;:-?/' and len(word)>1:
+        while word[-1] in '.,;:-_?/\"\'' and len(word)>1:
             word = word[:-1]
         if len(word) <= 1:
             new_text.append(word)
@@ -87,7 +87,7 @@ def replace_link(text):
     list_text = re.sub(r'(https|http)?:\/\/([\w\.\/\?\=\&\%])*\b', ' spam_link ', text)
     return ' '.join(list_text.split())
 
-def pipeline(text, list_stopword, vi_list, en_list):
+def pipeline_preprocess(text):
     text = delete_emojies(text)         # delete emojies
 
     text = remove_last_repeat(text, vi_list, en_list)
@@ -104,7 +104,7 @@ def pipeline(text, list_stopword, vi_list, en_list):
     text = text.replace(" _", " ")
     return text
     
-print(pipeline("Cóoooo Chànggggg trai em mng 9X Quảng Trị khởi nghiệp rất vuiiii vẻ từ nấm sò 17.30.2022. ở số 1530975259765. Em ở http://url.com/bla1/blah1/", list_stopword, vi_list, en_list))
+# print(pipeline_preprocess('"Cóoooo Chànggggg traiiii". em mng 9X Quảng Trị khởi nghiệp rất vuiiii vẻ từ nấm sò 17.30.2022. ở số 1530975259765. Em ở http://url.com/bla1/blah1/'))
 # chàng_trai mng 9x quảng_trị khởi_nghiệp vui_vẻ nấm sò datetime spam_phone em spam_link
-print(pipeline(a1, list_stopword, vi_list, en_list))
+# print(pipeline_preprocess(a1))
 # shop hàng bình nhiệt nhu_cầu liên_hệ shop nha
