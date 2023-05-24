@@ -11,7 +11,7 @@ Labelling rules:
 
 ## Progress (updated 24/5/2023)
 - Data crawling: 
-  + Technology: Python BeautifulSoup
+  + Technology: Python Selenium
   + ~14000 comments in 10 Shopee posts with different product types. 
   + I also use [this dataset from Kaggle](https://www.kaggle.com/datasets/linhlpv/vietnamese-sentiment-analyst) with ~31000 comments
 - Data labeling: manually done
@@ -27,13 +27,19 @@ Labelling rules:
 - Build sentiment analysis models:
   + Technique: Stratified k-fold cross validation, SMOTE, SMOTE+Tomeklink
   + Train-test split: 0.8 - 0.2, then test dataset is discard randomly so that each class has equal number of comments.
-  + Dataset: [this dataset from Kaggle](https://www.kaggle.com/datasets/linhlpv/vietnamese-sentiment-analyst)
-  + Result (based on accuracy)
+  + Dataset: [this dataset from Kaggle](https://www.kaggle.com/datasets/linhlpv/vietnamese-sentiment-analyst). 
+  + TF-IDF is used for numerical representation of words.
+  + Hyperparameters: go to sentiment_analysis.py for more detail. Cross validation k=5
+  + Result (based on accuracy):
     |  |KNN|Softmax|SVM|Tree|RF|MultinomialNB|
     |---|---|---|---|---|---|---|
     |Normal|0.476|0.565|0.393|0.556|0.566|0.545|
     |SMOTE|0.521|0.369|0.529|0.547|0.58|0.612|
     |CV|0.476|0.562|0.391|0.545|0.564|0.545|
     |SMOTETomek|0.527|0.370|0.538|0.544|0.604|0.625|
+  + Note: I used sklearn to implement KNN, Decision Tree and Random Forest due to its speed and memory efficiency. The self-implemeted version still works fine.
 
-
+## Future work
+- Build spam classification model
+- Build web extension
+- Using stacking ensemble technique to create better model (hope so)
