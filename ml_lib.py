@@ -24,7 +24,7 @@ class LogisticRegression(BaseEstimator):
             linear_pred = np.dot(X, self.weights) + self.bias
             predictions = sigmoid(linear_pred)
         
-            dw = (1/n_samples) * np.dot(X.transpose, (predictions - y))
+            dw = (1/n_samples) * np.dot(X.T, (predictions - y))
             db = (1/n_samples) * np.sum(predictions - y)
             
             self.weights = self.weights - self.lr*dw
@@ -33,7 +33,7 @@ class LogisticRegression(BaseEstimator):
     def predict(self, X, thresh=0.5):
         linear_pred = np.dot(X, self.weights) + self.bias
         y_pred = sigmoid(linear_pred)
-        class_pred = [0 if y_pred < thresh else 1 for y in y_pred]
+        class_pred = [0 if y < thresh else 1 for y in y_pred]
         return class_pred
     
 
@@ -48,7 +48,6 @@ class SoftmaxRegression(BaseEstimator):
         self._classes = np.unique(y)
         n_classes = len(self._classes)
         Y = self.convert_labels(y, n_classes)
-        print(Y.shape)
         
         W_init = np.random.randn(n_features, n_classes)
         W = [W_init] 

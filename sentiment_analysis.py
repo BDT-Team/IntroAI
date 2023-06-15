@@ -16,12 +16,13 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
+import pickle
 
 from ml_lib import SoftmaxRegression, MultinomialNaiveBayes, KNN, MulticlassSVM
 from ensemble.decisiontree_id3 import DecisionTree
 from ensemble.randomforest import RandomForest
 
-MODEL_PATH = "model\level0"
+MODEL_PATH = "model\level0_sentiment"
 
 df = pd.read_csv("data/preprocess/sentiment_train.csv")
 df = df.dropna()
@@ -37,6 +38,7 @@ model_rf_preprocess = Pipeline([('vect', count_vector),
                     ('tfidf', TfidfTransformer()),
                     ])
 X_train_CV = model_rf_preprocess.fit_transform(X_train)
+pickle.dump(model_rf_preprocess, open(os.path.join(MODEL_PATH, "sentiment_tfidf.pkl"), 'wb'))
 
 df_test = pd.read_csv("data/preprocess/sentiment_test.csv")
 df_test = df_test.dropna()
