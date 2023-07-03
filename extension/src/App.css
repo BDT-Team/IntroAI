@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+  height: 225px;
+  width : 400px;
+  background-color: #FBAB7E;
+background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+padding-top: 15px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.extensionTitle {
+	color: #3d5c98;
+    font-weight: 800;
+    font-size: 25px;
+	padding-bottom: 15px;
+}
+
+.progressbar {
+    /* Size */
+    width: 200px;
+    height: 28px;
+
+    /* Content alignment */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    /* Style */
+    border-radius: 60px;
+    background-color: #494b52;
+    box-shadow: 0px 0px 20px #111;
+
+    overflow: hidden;
+	margin-top: 15px;
+}
+
+.bar {
+    /* Size */
+    width: 0%;
+
+    /* Style */
+    background: rgb(255, 174, 105);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 174, 105, 1) 0%,
+        rgba(255, 173, 102, 1) 32%,
+        rgba(255, 132, 25, 1) 100%
+    );
+}
+
+.progressbar-container {
+    /* Content alignment */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+	justify-content: center;
+}
+
+.progressbar-text-container {
+    /* Size */
+    width: 25px;
+    margin-left: 30px;
+
+    /* Content alignment */
+    display: flex;
+    flex-direction: row;
+
+    /* Styling */
+    color: #3d5c98;
+    font-family: montserrat;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.result {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.title,
+.progress {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	align-items: center;
+}
+
+.positiveTitle,
+.neutralTitle,
+.negativeTitle,
+.spamTitle {
+	color: #234869;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.filterType {
+	display: flex;
+	flex-direction: row;
+	gap: 3px;
+	justify-content: flex-end;
+	padding-right: 35px;
+	margin-bottom:10px;
+}

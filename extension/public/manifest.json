@@ -1,0 +1,20 @@
+{
+  "name": "my extension",
+  "description" : "Filter comment",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action" : {
+	  "default_title" : "My_apps",
+	  "default_popup" : "index.html",
+	  "default_icon" : {
+		  "16" : "logo192.png",
+		  "128" :"logo512.png"
+	  }
+  },
+  "permissions": [
+    "tabs",
+	"scripting",
+	"activeTab"
+  ],
+  "host_permissions": ["<all_urls>"]
+}
