@@ -209,7 +209,7 @@ class MultinomialNaiveBayes(BaseEstimator):
     
     def _theta(self, x_i, i, h):
         """
-        Calculates theta_yi. aka P(xi | y) using eqn(1) in the notebook.
+        Calculates theta_yi. aka P(xi | y).
         
         params
         ------
